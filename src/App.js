@@ -3,9 +3,14 @@ import ReactDOM from 'react-dom'
 
 const App = () => {
     const [ persons, setPersons ] = useState([
-      { id:1, name: 'Arto Hellas' }
+      { id:1 ,name: 'Arto Hellas', number: '040-123456' },
+    { id:2 ,name: 'Ada Lovelace', number: '39-44-5323523' },
+    { id:3 ,name: 'Dan Abramov', number: '12-43-234345' },
+    { id:4, name: 'Mary Poppendieck', number: '39-23-6423122' }
     ]) 
     const [ newName, setNewName ] = useState('')
+    const [ newNumber, setNewNumber ] = useState('')
+    const [ searchName, setSearchName] = useState('')
   
     const addPerson = (event) => {
       event.preventDefault()
@@ -14,26 +19,36 @@ const App = () => {
         name:newName,
         // date: new Date().toISOString(),
          id: persons.length +1,
+         number: newNumber
       }
-      if(persons.some(e => e.name===newName)){
+      if(persons.some(e => e.name===newName)&&persons.some(e=>e.number===newNumber)){
         alert(`${newName} is already added to phonebook.`);
       }else{
         setPersons(persons.concat(personObject))
         
       }
       setNewName('')
+      setNewNumber('')
     }
 
     
   
     const handlePersonChange = (event)=>{
         console.log(event.target.value)
-        if(persons.name===event.target.value){
-          alert(event.target.value," is already on the list")
-        }else setNewName(event.target.value)
+        setNewName(event.target.value)
     }
+
+    const handleNumberChange = (event)=>{
+      console.log(event.target.value)
+      setNewNumber(event.target.value)
+  }
+    const handleSearchChange = (event) =>{
+      setSearchName(event.target.value)
+    }
+
+
     const displayName = ()=> persons.map(p=>
-      <li key={p.id}>{p.name}</li>
+    <li key={p.id}>{p.name} {p.number}</li>
     )
 
     
@@ -41,14 +56,11 @@ const App = () => {
     return (
       <div>
         <h2>Phonebook</h2>
+        <p>filter shown with <input value={searchName} onChange={handleSearchChange}></input> </p>
         <form onSubmit={addPerson}>
-          <div>
-            name: <input value={newName} 
-                          onChange={handlePersonChange}/>
-          </div>
-          <div>
-            <button type="submit">add</button>
-          </div>
+          <div> name: <input value={newName} onChange={handlePersonChange}/> </div>
+          <div> number: <input value={newNumber} onChange={handleNumberChange}/></div>
+          <div> <button type="submit">add</button> </div>
         </form>
         <h2>Numbers</h2>
         <ul>
