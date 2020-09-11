@@ -11,8 +11,8 @@ const App = () => {
       console.log('button clicked',event.target)
       const personObject = {
         name:newName,
-        date: new Date().toISOString(),
-        id: persons.length +1,
+        // date: new Date().toISOString(),
+        // id: persons.length +1,
       }
       setPersons(persons.concat(personObject))
       setPersons('')
@@ -24,6 +24,9 @@ const App = () => {
           alert(event.target.value," is already on the list")
         }else setNewName(event.target.value)
     }
+    const displayName = ()=> persons.map(p=>
+      <li key={p.id}>{p.name}</li>
+    )
 
     
   
@@ -41,9 +44,7 @@ const App = () => {
         </form>
         <h2>Numbers</h2>
         <ul>
-          {()=>persons.map(p=>
-            <li key={p.id}>{p.name}</li>
-          )}
+          {displayName()}
         </ul>
       </div>
     )
