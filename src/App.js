@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 const App = () => {
     const [ persons, setPersons ] = useState([
-      { name: 'Arto Hellas' }
+      { id:1, name: 'Arto Hellas' }
     ]) 
     const [ newName, setNewName ] = useState('')
   
@@ -12,7 +12,7 @@ const App = () => {
       const personObject = {
         name:newName,
         // date: new Date().toISOString(),
-        // id: persons.length +1,
+         id: persons.length +1,
       }
       setPersons(persons.concat(personObject))
       setPersons('')
