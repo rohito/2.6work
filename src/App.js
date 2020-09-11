@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import ReactDOM from 'react-dom'
 
 const App = () => {
     const [ persons, setPersons ] = useState([
@@ -15,7 +16,8 @@ const App = () => {
          id: persons.length +1,
       }
       setPersons(persons.concat(personObject))
-      setPersons('')
+      
+
     }
   
     const handlePersonChange = (event)=>{
@@ -49,4 +51,9 @@ const App = () => {
       </div>
     )
   }
-export default App
+
+
+ReactDOM.render(
+  <App  />,
+  document.getElementById('root')
+)
