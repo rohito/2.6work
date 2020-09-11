@@ -1,53 +1,29 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import App from './App'
 
-const Header = (p) => (<h1>{p.course.name}</h1>)
-
-const Part = (p) =>(
-  <p>{p.part} {p.excercise}</p>
-)
-const Content = (p) => {
-  return(
-    <div>
-      <Part part = {p.course.parts[0].name} excercise= {p.course.parts[0].exercises}/>
-      <Part part = {p.course.parts[1].name} excercise= {p.course.parts[1].exercises}/>
-      <Part part = {p.course.parts[2].name} excercise= {p.course.parts[2].exercises}/>
-      
-    </div>
-  )
-}
-const Total = (p) => (
-<p>Number of exercises {p.course.parts[0].exercises +p.course.parts[1].exercises+ p.course.parts[2].exercises}</p>
-)
-
-const App = () => {
-  const course = {
-    name: 'Half Stack application development',
-    parts: [
-      {
-        name: 'Fundamentals of React',
-        exercises: 10
-      },
-      {
-        name: 'Using props to pass data',
-        exercises: 7
-      },
-      {
-        name: 'State of a component',
-        exercises: 14
-      }
-    ]
+const notes = [
+  {
+    id: 1,
+    content: 'HTML is easy',
+    date: '2020-01-10T17:30:31.098Z',
+    important: true
+  },
+  {
+    id: 2,
+    content: 'Browser can execute only Javascript',
+    date: '2020-01-10T18:39:34.091Z',
+    important: false
+  },
+  {
+    id: 3,
+    content: 'GET and POST are the most important methods of HTTP protocol',
+    date: '2020-01-10T19:20:14.298Z',
+    important: true
   }
+]
 
-
-
-  return (
-    <div>
-      <Header course={course}/>
-      <Content course={course}/>
-      <Total course={course} />
-    </div>
-  )
-}
-
-ReactDOM.render(<App />, document.getElementById('root'))
+ReactDOM.render(
+  <App notes={notes} />,
+  document.getElementById('root')
+)
