@@ -48,10 +48,18 @@ const App = () => {
 
 
     const displayName = ()=> persons.map(p=>
-    <li key={p.id}>{p.name} {p.number}</li>
-    )
-
+        <li key={p.id}>{p.name} {p.number}</li>
+      )
     
+      
+    
+  
+
+  // persons.filter(p=>p.name.includes(searchName)).map(p=>(
+  //   <li>
+  //     {p.name}
+  //   </li>
+  // ))
   
     return (
       <div>
