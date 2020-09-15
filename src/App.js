@@ -34,23 +34,40 @@ const App = () => {
     
   
     const handlePersonChange = (event)=>{
-        console.log(event.target.value)
+        // console.log(event.target.value)
         setNewName(event.target.value)
     }
 
     const handleNumberChange = (event)=>{
-      console.log(event.target.value)
+      // console.log(event.target.value)
       setNewNumber(event.target.value)
   }
     const handleSearchChange = (event) =>{
+      console.log(event.target.value)
       setSearchName(event.target.value)
     }
 
 
-    const displayName = ()=> persons.map(p=>
-        <li key={p.id}>{p.name} {p.number}</li>
-      )
-    
+     const displayName = ()=> 
+      //  console.log(searchName)
+      //  if(!searchName===""){
+      //    persons.filter(p=>p.name.includes(searchName)).map(p=>
+      //     <li key={p.id}>{p.name} {p.number}</li>
+      //    )
+      //  }
+     persons.map(p=>
+         <li key={p.id}>{p.name} {p.number}</li>
+       )
+       
+     
+
+     const displaySearch = () => persons.map(p=>
+      <li key={p.id}>{p.name} {p.number}</li>
+    )
+
+    //   const displayName =()=> searchName
+    // ? persons.filter(person => person.name.search(searchName) !== -1)
+    // : persons;
       
     
   
@@ -72,7 +89,8 @@ const App = () => {
         </form>
         <h2>Numbers</h2>
         <ul>
-          {displayName()}
+          {searchName ? displaySearch : displayName}
+          
         </ul>
       </div>
     )
