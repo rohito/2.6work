@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
-import ReactDOM from 'react-dom'
+
+import Filter from './components/Filter'
+import PersonForm from './components/PersonForm'
 
 const App = () => {
     const [ persons, setPersons ] = useState([
@@ -31,7 +33,6 @@ const App = () => {
       setNewNumber('')
     }
 
-    
   
     const handlePersonChange = (event)=>{
         // console.log(event.target.value)
@@ -47,20 +48,11 @@ const App = () => {
       setSearchName(event.target.value)
     }
 
-
-     const displayName = ()=> 
-      //  console.log(searchName)
-      //  if(!searchName===""){
-      //    persons.filter(p=>p.name.includes(searchName)).map(p=>
-      //     <li key={p.id}>{p.name} {p.number}</li>
-      //    )
-      //  }
      persons.map(p=>
          <li key={p.id}>{p.name} {p.number}</li>
        )
        
-    
-       const personToShow = searchName === ''
+    const personToShow = searchName === ''
        ? persons
        : persons.filter(person =>
            person.name.toLowerCase().includes(searchName.toLowerCase()))
@@ -68,37 +60,18 @@ const App = () => {
      const row_names = () => personToShow.map(p=>
       <p key={p.id}>{p.name} {p.number}</p>
     )
-
-    //   const displayName =()=> searchName
-    // ? persons.filter(person => person.name.search(searchName) !== -1)
-    // : persons;
-      
-    
-  
-
-  // persons.filter(p=>p.name.includes(searchName)).map(p=>(
-  //   <li>
-  //     {p.name}
-  //   </li>
-  // ))
   
     return (
       <div>
         <h2>Phonebook</h2>
-        <p>filter shown with <input value={searchName} onChange={handleSearchChange}></input> </p>
-        <form onSubmit={addPerson}>
-          <div> name: <input value={newName} onChange={handlePersonChange}/> </div>
-          <div> number: <input value={newNumber} onChange={handleNumberChange}/></div>
-          <div> <button type="submit">add</button> </div>
-        </form>
+        <Filter value={searchName} onChange= {handleSearchChange}/>
+        <h2>add a new</h2>
+        <PersonForm onSubmit={addPerson} name={{value: newName,onChange:handlePersonChange}} 
+        number={{value:newNumber,onChange:handleNumberChange}}/>
         <h2>Numbers</h2>
         <>{row_names()}</>
       </div>
     )
   }
+export default App;
 
-
-ReactDOM.render(
-  <App  />,
-  document.getElementById('root')
-)
