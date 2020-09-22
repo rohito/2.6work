@@ -59,10 +59,14 @@ const App = () => {
          <li key={p.id}>{p.name} {p.number}</li>
        )
        
-     
+    
+       const personToShow = searchName === ''
+       ? persons
+       : persons.filter(person =>
+           person.name.toLowerCase().includes(searchName.toLowerCase()))
 
-     const displaySearch = () => persons.map(p=>
-      <li key={p.id}>{p.name} {p.number}</li>
+     const row_names = () => personToShow.map(p=>
+      <p key={p.id}>{p.name} {p.number}</p>
     )
 
     //   const displayName =()=> searchName
@@ -88,10 +92,7 @@ const App = () => {
           <div> <button type="submit">add</button> </div>
         </form>
         <h2>Numbers</h2>
-        <ul>
-          {searchName ? displaySearch : displayName}
-          
-        </ul>
+        <>{row_names()}</>
       </div>
     )
   }
